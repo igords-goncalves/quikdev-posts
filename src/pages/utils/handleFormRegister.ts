@@ -2,12 +2,14 @@ import FakerApi from '../../services/api/fakerApi';
 
 const fakeApi = new FakerApi();
 
+/**
+ * Função para lidar com o submit de formulários de registro
+ */
 export const handleFormRegister = async (
   name: string,
   username: string,
   password: string,
 ) => {
-  // Se necessario adicione um e.preventDefault() para evitar o reload da pagina
   try {
     const response: any = await fakeApi.post('/register', {
       name,

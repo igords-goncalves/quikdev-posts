@@ -3,6 +3,9 @@ import FakerApi from '../../services/api/fakerApi';
 
 const fakeApi = new FakerApi();
 
+/**
+ * Função para lidar com o submit de formulários de login
+ */
 export const handleFormSubmit = async (
   username: string,
   password: string,
