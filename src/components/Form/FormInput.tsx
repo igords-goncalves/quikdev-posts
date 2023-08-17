@@ -5,11 +5,13 @@ interface FormInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label: string;
   name: string;
   register: any;
+  errors: any;
 }
 
 export const FormInput: React.FC<FormInputProps> = ({
   label,
   register,
+  errors,
   ...props
 }) => {
   return (
@@ -23,6 +25,7 @@ export const FormInput: React.FC<FormInputProps> = ({
         {...props}
         {...register}
       />
+      {errors && <span className="text-sm text-red-400">{errors.message}</span>}
     </div>
   );
 };
