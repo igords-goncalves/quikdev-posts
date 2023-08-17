@@ -34,7 +34,7 @@
     "prettier"
   ],
   "rules": {
-    "prettier/prettier": "error",
+    "prettier/prettier": [ "error", { "endOfLine": "auto"} ],
     "react-refresh/only-export-components": "off",
     "prefer-arrow-callback": "error",
     "react/prop-types": "off",
