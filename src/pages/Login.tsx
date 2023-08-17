@@ -2,9 +2,19 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Form } from '../components/Form';
 import { useForm } from 'react-hook-form';
 import { handleFormSubmit } from './utils/handleFormSubmit';
+import { createUserFormSchema } from '../schemas/createUserFormSchema';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { CreateUserFormState } from '../types/CreateUserFormState';
 
 const Login: React.FC = () => {
-  const { register, watch, handleSubmit } = useForm();
+  const {
+    register,
+    watch,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<CreateUserFormState>({
+    resolver: zodResolver(createUserFormSchema),
+  });
 
   const navigate = useNavigate();
 
@@ -27,13 +37,16 @@ const Login: React.FC = () => {
             label="Usuário"
             placeholder="Digite seu usuário"
             register={register('username', { required: true })}
+            errors={errors.username}
           />
+
           <Form.Input
             name="password"
             type="password"
             label="Senha"
             placeholder="Digite sua senha"
             register={register('password', { required: true })}
+            errors={errors.password}
           />
           <Form.Submit>Entrar</Form.Submit>
         </Form.Root>

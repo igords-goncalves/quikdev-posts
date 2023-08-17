@@ -2,11 +2,19 @@ import { Link } from 'react-router-dom';
 import { Form } from '../components/Form';
 import { useForm } from 'react-hook-form';
 import { handleFormRegister } from './utils/handleFormRegister';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { createUserFormSchema } from '../schemas/createUserFormSchema';
+import { CreateUserFormState } from '../types/CreateUserFormState';
 
 const Register: React.FC = () => {
-  const { register, watch, handleSubmit } = useForm();
-
-  console.log(watch('name'));
+  const {
+    register,
+    watch,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<CreateUserFormState>({
+    resolver: zodResolver(createUserFormSchema),
+  });
 
   const onSubmit = () => {
     const name = watch('name');
@@ -26,21 +34,24 @@ const Register: React.FC = () => {
             type="text"
             label="Nome"
             placeholder="Digite seu nome"
-            register={register('name', { required: true })}
+            register={register('name')}
+            errors={errors.name}
           />
           <Form.Input
             name="username"
             type="text"
             label="Usuário"
             placeholder="Digite seu usuário"
-            register={register('username', { required: true })}
+            register={register('username')}
+            errors={errors.username}
           />
           <Form.Input
             name="password"
             type="password"
             label="Senha"
             placeholder="Digite sua senha"
-            register={register('password', { required: true })}
+            register={register('password')}
+            errors={errors.password}
           />
           <Form.Submit>Entrar</Form.Submit>
         </Form.Root>
