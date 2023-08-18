@@ -6,6 +6,9 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { LoginFormState } from '../types/CreateUserFormState';
 import { handleLogin } from '../services/auth/authServices';
 
+import bgLeft from '../assets/bg-left.png';
+import bgRight from '../assets/bg-right.png';
+
 const Login: React.FC = () => {
   const {
     register,
@@ -54,6 +57,13 @@ const Login: React.FC = () => {
       <p className="font-medium text-sm mt-4">
         Se não possui uma conta, <Link to="register"> clique aqui</Link> criar.
       </p>
+
+      <div className="absolute top-10 left-0 -z-10">
+        <img className="opacity-5" src={bgLeft} alt="background" />
+      </div>
+      <div className="absolute top-10 right-0 -z-10">
+        <img className="opacity-5" src={bgRight} alt="background" />
+      </div>
     </>
   );
 };
