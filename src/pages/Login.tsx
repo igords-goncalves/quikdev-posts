@@ -1,10 +1,10 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { Form } from '../components/Form';
 import { useForm } from 'react-hook-form';
-import { handleFormSubmit } from './utils/handleFormSubmit';
-import { createUserFormSchema } from '../schemas/createUserFormSchema';
+import { loginFormSchema } from '../schemas/createUserFormSchema';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { CreateUserFormState } from '../types/CreateUserFormState';
+import { LoginFormState } from '../types/CreateUserFormState';
+import { handleLogin } from '../services/auth/authServices';
 
 const Login: React.FC = () => {
   const {
@@ -12,8 +12,8 @@ const Login: React.FC = () => {
     watch,
     handleSubmit,
     formState: { errors },
-  } = useForm<CreateUserFormState>({
-    resolver: zodResolver(createUserFormSchema),
+  } = useForm<LoginFormState>({
+    resolver: zodResolver(loginFormSchema),
   });
 
   const navigate = useNavigate();
@@ -23,7 +23,7 @@ const Login: React.FC = () => {
     const password = watch('password');
     const route = '/posts';
 
-    handleFormSubmit(username, password, route, navigate);
+    handleLogin(username, password, route, navigate);
   };
 
   return (

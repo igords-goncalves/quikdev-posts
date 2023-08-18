@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
 import { Form } from '../components/Form';
 import { useForm } from 'react-hook-form';
-import { handleFormRegister } from './utils/handleFormRegister';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { createUserFormSchema } from '../schemas/createUserFormSchema';
-import { CreateUserFormState } from '../types/CreateUserFormState';
+import { RegisterFormState } from '../types/CreateUserFormState';
+import { registerFormSchema } from '../schemas/createUserFormSchema';
+import { handleRegister } from '../services/auth/authServices';
 
 const Register: React.FC = () => {
   const {
@@ -12,8 +12,8 @@ const Register: React.FC = () => {
     watch,
     handleSubmit,
     formState: { errors },
-  } = useForm<CreateUserFormState>({
-    resolver: zodResolver(createUserFormSchema),
+  } = useForm<RegisterFormState>({
+    resolver: zodResolver(registerFormSchema),
   });
 
   const onSubmit = () => {
@@ -21,7 +21,7 @@ const Register: React.FC = () => {
     const username = watch('username');
     const password = watch('password');
 
-    handleFormRegister(name, username, password);
+    handleRegister(name, username, password);
   };
 
   return (
