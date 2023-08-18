@@ -53,7 +53,7 @@ const Register: React.FC = () => {
             register={register('password')}
             errors={errors.password}
           />
-          <Form.Submit>Entrar</Form.Submit>
+          <Form.Submit>Criar</Form.Submit>
         </Form.Root>
       </form>
       <p className="font-medium text-sm mt-4">
