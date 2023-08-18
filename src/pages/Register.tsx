@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Form } from '../components/Form';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -16,12 +16,15 @@ const Register: React.FC = () => {
     resolver: zodResolver(registerFormSchema),
   });
 
+  const navigate = useNavigate();
+
   const onSubmit = () => {
     const name = watch('name');
     const username = watch('username');
     const password = watch('password');
+    const route = '/';
 
-    handleRegister(name, username, password);
+    handleRegister(name, username, password, route, navigate);
   };
 
   return (
