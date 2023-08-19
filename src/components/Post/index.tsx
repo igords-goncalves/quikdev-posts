@@ -15,5 +15,5 @@ export const Post = {
   Submit: PostSubmit,
   Card: PostCard,
   Header: PostHeder,
-  Comment: PostActionComment,
+  CommentAction: PostActionComment,
 };
