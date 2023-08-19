@@ -5,6 +5,7 @@ interface FormInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label: string;
   name: string;
   register: any;
+  placeholder: string;
   errors: any;
 }
 
@@ -21,7 +22,7 @@ export const FormInput: React.FC<FormInputProps> = ({
         <sup>*</sup>
       </label>
       <input
-        className="px-4 py-2 border border-gray-400 rounded-md"
+        className="px-4 py-2 border border-gray-600 rounded-md"
         {...props}
         {...register}
       />
