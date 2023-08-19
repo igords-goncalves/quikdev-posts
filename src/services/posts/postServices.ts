@@ -38,3 +38,17 @@ export const removePost = async (post_id: number) => {
     toast.error(error.message);
   }
 };
+
+export const editPost = async (
+  post_id: number,
+  post: { title: string; content: string },
+) => {
+  try {
+    const response: any = await fakeApi.put('/posts/update', { post_id, post });
+    if (response.success) {
+      toast.success(response.message);
+    }
+  } catch (error: unknown | any) {
+    toast.error(error.message);
+  }
+};
