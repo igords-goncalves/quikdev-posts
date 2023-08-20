@@ -1,19 +1,13 @@
-import { PostActionComment } from './PostActionComent';
-import { PostArea } from './PostArea';
-import { PostCard } from './PostCard';
-import { PostContainer } from './PostContainer';
-import { PostHeder } from './PostHeader';
-import { PostRoot } from './PostRoot';
+import { PostCommentAction } from './PostCommentAction';
+import { PostCardContent } from './PostCardContent';
 import { PostSubmit } from './PostSubmit';
-import { PostInput } from './PostTitle';
+import { PostTitle } from './PostTitle';
+import { PostContentActions } from './PostContentActions';
 
 export const Post = {
-  Root: PostRoot,
-  Input: PostInput,
-  Container: PostContainer,
-  TextArea: PostArea,
+  Title: PostTitle,
   Submit: PostSubmit,
-  Card: PostCard,
-  Header: PostHeder,
-  CommentAction: PostActionComment,
+  CardContent: PostCardContent,
+  CommentAction: PostCommentAction,
+  ContentActions: PostContentActions,
 };
