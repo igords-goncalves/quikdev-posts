@@ -24,7 +24,7 @@ export const createPost = async (title: string, content: string) => {
       toast.success(response.message);
     }
   } catch (error: unknown | any) {
-    console.log('an error has occurred', error.message);
+    toast.error(error.message);
   }
 };
 
