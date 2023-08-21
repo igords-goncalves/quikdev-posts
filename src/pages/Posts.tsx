@@ -50,7 +50,7 @@ const Posts: React.FC = () => {
           <h1>Bem vindo {name}, faça seu post!</h1>
         </div>
       </header>
-      <form onSubmit={handleSubmit(createPosts)}>
+      <form role="form" onSubmit={handleSubmit(createPosts)}>
         <div className="flex flex-col items-start justify-between">
           <input
             className=" mt-6 px-4 py-2 border border-gray-600 rounded-md w-full"
@@ -72,13 +72,14 @@ const Posts: React.FC = () => {
         </div>
       </form>
 
-      {posts.map((post: any) =>
-        userId === post.user_id ? (
-          <div key={post.id}>
-            <PostCardContent name={name} post={post} />
-          </div>
-        ) : null,
-      )}
+      {posts &&
+        posts.map((post: any) =>
+          userId === post.user_id ? (
+            <div key={post.id}>
+              <PostCardContent name={name} post={post} />
+            </div>
+          ) : null,
+        )}
     </main>
   );
 };
