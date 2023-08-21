@@ -14,17 +14,20 @@ export const getComment = async (post_id: number) => {
   }
 };
 
-export const createComment = async (title: string, content: string) => {
+export const createComment = async (
+  post_id: number,
+  comment: { content: string },
+) => {
   try {
     const response: any = await fakeApi.post('/comments/create', {
-      title,
-      content,
+      post_id,
+      comment,
     });
     if (response.success) {
       toast.success(response.message);
     }
   } catch (error: unknown | any) {
-    console.log('an error has occurred', error.message);
+    toast.error(error.message);
   }
 };
 
@@ -45,13 +48,13 @@ export const removeComment = async (post_id: number, comment_id: number) => {
 export const editComment = async (
   post_id: number,
   comment_id: number,
-  post: { title: string; content: string },
+  comment: { content: string },
 ) => {
   try {
     const response: any = await fakeApi.put('/comments/update', {
       post_id,
       comment_id,
-      post,
+      comment,
     });
     if (response.success) {
       toast.success(response.message);
