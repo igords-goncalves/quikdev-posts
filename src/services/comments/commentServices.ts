@@ -10,7 +10,7 @@ export const getComment = async (post_id: number) => {
       return response.data;
     }
   } catch (error: unknown | any) {
-    toast.error(error.message);
+    return;
   }
 };
 

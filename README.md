@@ -5,7 +5,7 @@
 
 [Repositório Relacionado](https://github.com/DiegoSilva94/FakeApiJs)
 
-O projeto é destinado a cumprimento do teste técnico para vaga de desenvolvedor front-end na empresa QuikDev.
+O projeto é destinado ao cumprimento do teste técnico para vaga de desenvolvedor frontend na empresa QuikDev.
 
 ## 🗨 Sobre o Projeto
 Esse é um projeto feito em React com detalhes e cuidado quanto ao design, UI (Interface do Usuário) e UX (Experiência do Usuário). Trata-se de um ambiente autênticado onde se é possível, fazer posts de textos, editar e excluir esse post, acionar comentários referente ao post escolhido, editar e excluir esse comentário.
