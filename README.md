@@ -34,11 +34,11 @@ git clone https://github.com/igords-goncalves/quikdev-posts.git
 ````
 Execute o comando comando no terminal para instalar as dependências necessárias.
 ````
-pnpm install
+npm install
 ````
 Execute o comando comando no terminal para iniciar o projeto.
 ````
-pnpm run dev
+npm run dev
 ````
 
 ## 🤝 Como Contribuir
