@@ -20,7 +20,7 @@ const Comment: React.FC<CommentProps> = ({
   hasComment,
   setHasComment,
 }) => {
-  const [comments, setComments] = useState([]);
+  const [comments, setComments] = useState<any>([]);
 
   const { register, handleSubmit, watch, reset } = useForm();
 
@@ -30,14 +30,12 @@ const Comment: React.FC<CommentProps> = ({
       setComments(comments);
     }
     getComments();
-  }, [post.id]);
+  }, [post.id, comments]);
 
   const createComments = async () => {
     setHasComment(false);
     const commentContent = watch('comment');
     await createComment(post.id, { content: commentContent });
-
-    // Faz o comentário aparecer na tela sem precisar atualizar a página
     const updatedComments = await getComment(post.id);
     setComments(updatedComments);
     reset();
@@ -75,13 +73,14 @@ const Comment: React.FC<CommentProps> = ({
       ) : null}
 
       <div className="pl-10">
-        {comments.map((comment: any) => {
-          return (
-            <div key={comment.id}>
-              <CommentCardContent comment={comment} post={post} />
-            </div>
-          );
-        })}
+        {comments &&
+          comments.map((comment: any) => {
+            return (
+              <div key={comment.id}>
+                <CommentCardContent comment={comment} post={post} />
+              </div>
+            );
+          })}
       </div>
     </>
   );
