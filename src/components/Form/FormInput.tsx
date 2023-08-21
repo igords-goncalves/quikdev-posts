@@ -1,6 +1,3 @@
-/**
- * Adjusting correctly the types of the input props
- */
 interface FormInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label: string;
   name: string;

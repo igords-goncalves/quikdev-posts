@@ -29,7 +29,7 @@ const Register: React.FC = () => {
 
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form role="form" onSubmit={handleSubmit(onSubmit)}>
         <Form.Root>
           <Form.Title>Criar Conta</Form.Title>
           <Form.Input
@@ -59,8 +59,9 @@ const Register: React.FC = () => {
           <Form.Submit>Criar</Form.Submit>
         </Form.Root>
       </form>
-      <p className="font-medium text-sm mt-4">
-        Se já possui uma conta, <Link to="/"> clique aqui</Link> fazer login.
+      <p className="font-medium text-sm mt-4" role="navigation">
+        Se já possui uma conta, <Link to="/"> clique aqui</Link> fazer{' '}
+        <span lang="en">login</span>.
       </p>
     </>
   );

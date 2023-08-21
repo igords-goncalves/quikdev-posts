@@ -51,6 +51,7 @@ const CommentCardContent: React.FC<CommentCardContentProps> = ({
         <div className="flex items-end justify-between w-full">
           <div className="gap-4 flex">
             <button
+              aria-label="editar"
               onClick={() => {
                 !isCommentEdited
                   ? setIsCommentEdited(true)
@@ -69,6 +70,7 @@ const CommentCardContent: React.FC<CommentCardContentProps> = ({
             </button>
 
             <button
+              aria-label="excluir"
               onClick={() => {
                 removeComment(post.id, comment.id);
               }}

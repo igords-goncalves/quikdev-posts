@@ -59,6 +59,7 @@ const Comment: React.FC<CommentProps> = ({
     <>
       {hasComment ? (
         <form
+          role="form"
           onSubmit={handleSubmit(createComments)}
           className="flex flex-col bg-[#3b3b3b] items-start mt-4 border rounded-md border-gray-300 w-full"
         >

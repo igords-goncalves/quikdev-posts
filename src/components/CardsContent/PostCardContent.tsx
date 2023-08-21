@@ -75,6 +75,7 @@ const PostCardContent: React.FC<PostCardContentProps> = ({ name, post }) => {
           </button>
           <div className="gap-4 flex">
             <button
+              aria-label="editar"
               onClick={() => {
                 !isPostEdited ? setIsPostEdited(true) : setIsPostEdited(false);
               }}
@@ -91,6 +92,7 @@ const PostCardContent: React.FC<PostCardContentProps> = ({ name, post }) => {
             </button>
 
             <button
+              aria-label="excluir"
               onClick={() => {
                 removePost(post.id);
               }}

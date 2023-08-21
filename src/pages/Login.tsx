@@ -31,7 +31,7 @@ const Login: React.FC = () => {
 
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form role="form" onSubmit={handleSubmit(onSubmit)}>
         <Form.Root>
           <Form.Title>Login</Form.Title>
           <Form.Input
@@ -54,7 +54,7 @@ const Login: React.FC = () => {
           <Form.Submit>Entrar</Form.Submit>
         </Form.Root>
       </form>
-      <p className="font-medium text-sm mt-4">
+      <p role="navigation" className="font-medium text-sm mt-4">
         Se não possui uma conta, <Link to="register"> clique aqui</Link> criar.
       </p>
 
