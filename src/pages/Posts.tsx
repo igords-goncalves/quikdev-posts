@@ -1,78 +1,85 @@
-import { getUserLogged } from '../services/auth/authServices';
+import { getUserLogged, handleLogout } from '../services/auth/authServices';
 import { useEffect, useState } from 'react';
-import { Post } from '../components/Post';
 import { useForm } from 'react-hook-form';
 import { createPost, getPost } from '../services/posts/postServices';
-import { PostAction } from '../components/Post/PostAction';
+import { useNavigate } from 'react-router-dom';
+import PostCardContent from '../components/CardsContent/PostCardContent';
+import SubmitBtn from '../components/SubmitBtn/SubmitBtn';
 
 const Posts: React.FC = () => {
   const [name, setName] = useState('');
   const [userId, setUserId] = useState('');
   const [posts, setPosts] = useState([]);
 
-  const { register, watch, handleSubmit } = useForm();
+  const { register, watch, handleSubmit, reset } = useForm();
 
-  (async () => {
-    const userData = await getUserLogged();
-    setName(userData.name);
-    setUserId(userData.id);
-  })();
-
-  async function getPosts() {
-    const posts = await getPost();
-    setPosts(posts);
-  }
+  const navigate = useNavigate();
 
   useEffect(() => {
-    getPosts();
-  }, []);
+    async function getUser() {
+      const user = await getUserLogged();
+      setName(user.name);
+      setUserId(user.id);
+    }
+    getUser();
+  }, [name, userId]);
 
-  const onSubmit = () => {
-    const title = watch('title');
-    const post = watch('post');
-
-    createPost(title, post);
+  const createPosts = async () => {
+    await createPost(watch('title'), watch('post'));
+    reset();
   };
 
+  useEffect(() => {
+    async function getPosts() {
+      const posts = await getPost();
+      setPosts(posts);
+    }
+    getPosts();
+  }, [posts]);
+
   return (
-    <>
-      <Post.Header name={name} />
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <Post.Root>
-          <Post.Input
-            name="title"
+    <main className="mb-12">
+      <header>
+        <button
+          onClick={() => handleLogout(navigate)}
+          className="bg-transparent border-gray-300 border-2 py-1 rounded-md text-sm absolute top-0 right-0 mt-4 mr-4"
+        >
+          Sair
+        </button>
+        <div className="text-gray-300 font-bold text-[8px] mt-8">
+          <h1>Bem vindo {name}, faça seu post!</h1>
+        </div>
+      </header>
+      <form onSubmit={handleSubmit(createPosts)}>
+        <div className="flex flex-col items-start justify-between">
+          <input
+            className=" mt-6 px-4 py-2 border border-gray-600 rounded-md w-full"
             type="text"
             placeholder="Escreva seu título aqui ..."
-            register={register('title')}
+            maxLength={30}
+            {...register('title', { required: true })}
           />
-          <Post.Container>
-            <Post.TextArea
+          <div className="flex flex-col items-start mt-4 bg-gradient-to-r from-[#2b2b35] border rounded-md border-gray-600 border-l-[#293749] w-full">
+            <textarea
+              className="resize-none w-full px-4 py-2 rounded-t-md"
               rows={8}
               placeholder="Escreva seu post aqui ..."
-              register={register('post')}
+              maxLength={2000}
+              {...register('post', { required: true })}
             />
-            <Post.Submit>Postar</Post.Submit>
-          </Post.Container>
-        </Post.Root>
+            <SubmitBtn>Postar</SubmitBtn>
+          </div>
+        </div>
       </form>
+
       {posts.map((post: any) =>
         userId === post.user_id ? (
-          <>
-            <Post.Card key={post.id} name={name} post={post}>
-              <Post.Comment />
-              <PostAction post={post} />
-            </Post.Card>
-            {/* Area de renderização da area de edição */}
-            <div className="pl-10">
-              {/* Area preparada para comentários! */}
-              <Post.Card key={post.id} name={name} post={post}>
-                <PostAction post={post} />
-              </Post.Card>
-            </div>
-          </>
+          <div key={post.id}>
+            <PostCardContent name={name} post={post} />
+          </div>
         ) : null,
       )}
-    </>
+    </main>
   );
 };
 export default Posts;
